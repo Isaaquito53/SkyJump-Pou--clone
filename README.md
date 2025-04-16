@@ -1,8 +1,8 @@
 # SKYJUMP Pou Clone (V01):
 #### This project is a clone of the minigame "Sky Jump" of the mobile video game "Pou".
-
+<br>
 It is made in C++ using the SDL3 library to manage the window and rendering.
-<br></br>
+</br>
 <br>Here is an example of what it looks like the original minigame:</br>
 <img src="https://github.com/user-attachments/assets/87342f79-49dd-4af3-8ee1-5a47f127c810" width="300">
 <br>
