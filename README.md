@@ -8,6 +8,7 @@ It is made in C++ using the SDL3 library to manage the window and rendering.
 <br>
 <a href="https://www.youtube.com/watch?v=oWz7u3rmQMM&t=75s"> "Pou "Sky Jump" Journey To Heaven's Arc" by Pou P Pou ^_^ </a>
 </br>
+
 ---
 # In this version:
 
