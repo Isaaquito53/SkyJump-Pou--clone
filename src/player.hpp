@@ -9,9 +9,9 @@ class Player
 public:
 	Player();
 	Player(int playerScale);
-	bool Jump(list<Platform> rects);			// manage the constant jump
+	int Jump(list<Platform> rects);			// manage the constant jump
 	void Move(SDL_Event key);					// manage the movement
-	bool collide(list<Platform> rects);			// manage collisions with platforms
+	int collide(list<Platform> rects);			// manage collisions with platforms
 
 	SDL_FRect m_player;							// graphic representation of the player
 private:

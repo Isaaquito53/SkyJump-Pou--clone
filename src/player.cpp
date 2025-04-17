@@ -6,7 +6,7 @@
 
 Player::Player() {
 	m_player.x = 400 / 2 - m_playerScale/2;
-	m_player.y = 100;
+	m_player.y = WINDOW_HEIGHT-100;
 	m_player.w = m_playerScale;
 	m_player.h = m_playerScale;
 }
@@ -20,31 +20,33 @@ Player::Player(int playerScale) {
 }
 
 // -------------------------------> Collision management
-bool Player::collide(list<Platform> rects) {
+int Player::collide(list<Platform> rects) {
 	int i = 0;
 	for (Platform rect : rects) {
 		// the player only collides if it is above the platform
 		if ((m_player.y + m_playerScale >= rect.m_rect.y && m_player.y < rect.m_rect.y + 5) &&
 			(m_player.x + m_playerScale >= rect.m_rect.x && m_player.x < rect.m_rect.x + rect.m_rect.w))
 		{
-			// cout << "Number of platform collided: " << i << endl;
-			return true;
+			//cout << "Number of platform collided: " << i << endl;
+			return i;
 		}
 		i++;
 	}
-	return false;
+	return -1;
 }
 
 // -------------------------------> Player jumping management
-bool Player::Jump(list<Platform> rects) {
+int Player::Jump(list<Platform> rects) {
 	m_player.y += m_upDown;		// upDown change the y-orientation of the player
-	if (collide(rects) && m_upDown > 0) {
+	int col = collide(rects);
+	if (col != -1 && m_upDown > 0) {
 		m_upDown = -m_upDown;
-		return true;			// if the player collides with a platform return true
+		//cout << col << endl;
+		return col;			// if the player collides with a platform return true
 	}
 	else if (m_player.y <= WINDOW_HEIGHT / 5)
 		m_upDown = -m_upDown;
-	return false;
+	return -1;
 }
 
 // -------------------------------> Player movement management

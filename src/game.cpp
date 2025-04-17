@@ -14,7 +14,7 @@ void Game::GameInit(){
 	int h = WINDOW_HEIGHT / m_nPlats;
 
 	srand(time(NULL));
-
+	// 1: 96, 2: 216, 3: 336, 4: 456, 5: 540
 	for (int i = 1; i < m_nPlats; i++) {
 		Platform pl = Platform(rand() % (WINDOW_WIDTH - m_platsScale), h * i - h/5 , m_platsScale);
 		m_randPlats.push_back(pl);
@@ -38,15 +38,26 @@ void Game::ManageEvents() {
 }
 
 void Game::PlayerProgress() {
-	// if the player has collided with a platform, remove the last platform and generate a new one
-	if (m_player.Jump(m_randPlats)) {
-		m_randPlats.pop_back();
+	int platColl = m_player.Jump(m_randPlats);
+	// if the player has collided with a platform...
+	if (platColl != -1) {
+		// discard all the platforms below the one you collided
+		int discardNPlats = m_nPlats - 1 - platColl;
+		cout << discardNPlats << " platforms should be discarded!" << endl;
+		for (int i = 0; i < discardNPlats; i++)
+			m_randPlats.pop_back();
 		int h = WINDOW_HEIGHT / m_nPlats;
-		for (Platform &pl : m_randPlats) {
-			pl.m_rect.y += h;
+		// move correctly the rest of the platforms
+		for (Platform& pl : m_randPlats) {
+			pl.m_rect.y += h * discardNPlats;
 		}
-		Platform pl = Platform(rand() % (WINDOW_WIDTH - m_platsScale), h - h / 5, m_platsScale);
-		m_randPlats.push_front(pl);
+		// generate as many platforms as has been discarded
+		for (int i = discardNPlats; i > 0; i--) {
+			Platform pl = Platform(rand() % (WINDOW_WIDTH - m_platsScale), h * i - h / 5, m_platsScale);
+			cout << "New platform at: " << h * i - h / 5 << endl;
+			m_randPlats.push_front(pl);
+		}
+		cout << "There are " << m_randPlats.size() << " platforms." << endl;
 	}
 }
 
@@ -72,7 +83,7 @@ void Game::GameLoop() {
 		SDL_RenderPresent(m_rend);
 		d++;
 		// 75 is the speed of the game
-		if (d >= 75) {	
+		if (d >= 150) {	
 			d = 0;
 			PlayerProgress();
 		}

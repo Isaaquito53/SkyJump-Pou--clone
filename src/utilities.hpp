@@ -9,5 +9,5 @@
 
 using namespace std;
 
-const int WINDOW_WIDTH = 400, WINDOW_HEIGHT = 600; // screen size (width and height)
+const int WINDOW_WIDTH = 400, WINDOW_HEIGHT = 800; // screen size (width and height)
 /* ----------------------------------------------------------------------- */
