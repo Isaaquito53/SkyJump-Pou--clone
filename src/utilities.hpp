@@ -3,6 +3,7 @@
 // LIBRARIES:
 #include <iostream>
 #include <SDL3/SDL.h>
+#include <string>
 #include <vector> 
 #include <list>
 #include <time.h>

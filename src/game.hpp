@@ -10,7 +10,8 @@ public:
 	void GameInit();					// init the game
 	void GameLoop();					// manage the game loop
 	void ManageEvents();				// manage the SDL events (key pressed)
-	void PlayerProgress();
+	void PlayerProgress();				// manage the player jumping and platform generation
+	void DrawScore();
 
 private:
 	SDL_Window* m_win;					// window of the game

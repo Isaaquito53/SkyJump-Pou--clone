@@ -9,6 +9,7 @@ Player::Player() {
 	m_player.y = WINDOW_HEIGHT-100;
 	m_player.w = m_playerScale;
 	m_player.h = m_playerScale;
+	m_score = 0;
 }
 
 Player::Player(int playerScale) {
@@ -17,6 +18,7 @@ Player::Player(int playerScale) {
 	m_player.y = WINDOW_HEIGHT / 2;
 	m_player.w = m_playerScale;
 	m_player.h = m_playerScale;
+	m_score = 0;
 }
 
 // -------------------------------> Collision management
@@ -42,7 +44,7 @@ int Player::Jump(list<Platform> rects) {
 	if (col != -1 && m_upDown > 0) {
 		m_upDown = -m_upDown;
 		//cout << col << endl;
-		return col;			// if the player collides with a platform return true
+		return col;				// if the player collides with a platform return true
 	}
 	else if (m_player.y <= WINDOW_HEIGHT / 5)
 		m_upDown = -m_upDown;
