@@ -10,6 +10,7 @@ Player::Player() {
 	m_player.w = m_playerScale;
 	m_player.h = m_playerScale;
 	m_score = 0;
+	m_coins = 0;
 }
 
 Player::Player(int playerScale) {
@@ -19,6 +20,7 @@ Player::Player(int playerScale) {
 	m_player.w = m_playerScale;
 	m_player.h = m_playerScale;
 	m_score = 0;
+	m_coins = 0;
 }
 
 // -------------------------------> Collision management
@@ -29,7 +31,6 @@ int Player::collide(list<Platform> rects) {
 		if ((m_player.y + m_playerScale >= rect.m_rect.y && m_player.y < rect.m_rect.y + 5) &&
 			(m_player.x + m_playerScale >= rect.m_rect.x && m_player.x < rect.m_rect.x + rect.m_rect.w))
 		{
-			//cout << "Number of platform collided: " << i << endl;
 			return i;
 		}
 		i++;
@@ -37,14 +38,30 @@ int Player::collide(list<Platform> rects) {
 	return -1;
 }
 
+// -------------------------------> Action depending on the type of platform
+void Player::platAction(list<Platform>& rects, int coll) {
+	// search for the col-th element on the rects list
+	auto plat = rects.begin();
+	advance(plat, coll);
+
+	if (plat->m_coin) {
+		m_coins++;
+		plat->m_coin = false;
+	}
+
+	if (plat->m_cloud)
+		rects.remove(*plat);
+}
+
+
 // -------------------------------> Player jumping management
-int Player::Jump(list<Platform> rects) {
+int Player::Jump(list<Platform> &rects) {
 	m_player.y += m_upDown;		// upDown change the y-orientation of the player
-	int col = collide(rects);
-	if (col != -1 && m_upDown > 0) {
+	int coll = collide(rects);
+	// if the player collide with a platform, return the number of this platform
+	if (coll != -1 && m_upDown > 0) {
 		m_upDown = -m_upDown;
-		//cout << col << endl;
-		return col;				// if the player collides with a platform return true
+		return coll;				
 	}
 	else if (m_player.y <= WINDOW_HEIGHT / 5)
 		m_upDown = -m_upDown;

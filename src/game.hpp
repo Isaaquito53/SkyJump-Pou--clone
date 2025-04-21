@@ -11,7 +11,8 @@ public:
 	void GameLoop();					// manage the game loop
 	void ManageEvents();				// manage the SDL events (key pressed)
 	void PlayerProgress();				// manage the player jumping and platform generation
-	void DrawScore();
+	void DrawScore();					// display score and amount of coins 
+	void DrawPlatforms();				// draw all the platforms
 
 private:
 	SDL_Window* m_win;					// window of the game

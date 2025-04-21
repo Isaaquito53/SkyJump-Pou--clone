@@ -12,7 +12,7 @@ It is made in C++ using the SDL3 library to manage the window and rendering.
 ---
 # In this version:
 
-You can move left and right and go out of the bounds while jumping.
+You can move left and right and go out of the bounds while jumping, take coins and jump above clouds.
 <br/>
 You can manually add platforms (it isn't implemented in an intuitive way, yet).
 
@@ -36,3 +36,5 @@ You can also use left and right arrows.
 - I've learned how to manage events in SDL.
 - I've learned how to make a simple platform video game prototype with SDL window and rednderer.
 - I've learned how to detect collisions with platforms (only by jumping above it).
+- I've learned how to manage a c++ list for random platforms.
+- I've learned how to add text in SDL.
