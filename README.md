@@ -1,4 +1,4 @@
-# SKYJUMP Pou Clone (V01.2):
+# SKYJUMP Pou Clone (V01.3):
 #### This project is a clone of the minigame "Sky Jump" of the mobile video game "Pou".
 <br>
 It is made in C++ using the SDL3 library to manage the window and rendering.
@@ -19,11 +19,12 @@ You can manually add platforms (it isn't implemented in an intuitive way, yet).
 ---
 # How to run:
 
-You must have SDL3 installed.
+Download or clone that repo.
 <br/>
-Make sure that you have all the .hpp, .cpp, and SDL3.dll files.
+Make sure that you have all the .dll from the **dependencies** folder inside the same folder where you have the .exe.
 <br/>
-It is recommended to manage all the files with Visual Studio.
+
+*You can see all the .exe in the **releases** folder.*
 
 ---
 # Controls:
